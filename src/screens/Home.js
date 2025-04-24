@@ -10,6 +10,10 @@ export default function Home() {
             </View>
             <View style={styles.body}>
                 <TarefaItem />
+
+                <View style={styles.botaoAdicionar}>
+
+                </View>
             </View>
         </View>
     );
@@ -42,6 +46,15 @@ const styles = StyleSheet.create({
         right: 15
     },
     body: {
-
+        flex: 1
+    },
+    botaoAdicionar: {
+        width: 50,
+        height: 50,
+        backgroundColor: 'blue',
+        borderRadius: 30,
+        position: 'absolute',
+        bottom: 15,
+        right: 15
     }
 });

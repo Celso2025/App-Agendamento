@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
+        left: 150
     },
     textoStatus: {
         color: 'white'
