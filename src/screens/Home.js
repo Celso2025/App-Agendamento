@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import TarefaItem from '../components/TarefaItem';
 
 export default function Home() {
@@ -8,13 +8,29 @@ export default function Home() {
                 <Text style={styles.titulo}>ABRIL / 2025</Text>
                 <View style={styles.icone}></View>
             </View>
-            <View style={styles.body}>
-                <TarefaItem />
+            <ScrollView style={styles.body}>
+                <TarefaItem 
+                    nome="Tarefa 1" 
+                    status="a cumprir" 
+                    data="24/04/2004" 
+                    categoria="reunião"
+                />
+                <TarefaItem 
+                    nome="Tarefa 2" 
+                    status="concluído" 
+                    data="35/13/2088" 
+                    categoria="estudo"
+                />
+            </ScrollView>
 
-                <View style={styles.botaoAdicionar}>
-
-                </View>
-            </View>
+            <TouchableOpacity 
+                style={styles.botaoAdicionar}
+                onPress={() => {
+                    alert("wedwe")
+                }}
+            >
+                <Text style={styles.botaoMais}>+</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -55,6 +71,13 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         position: 'absolute',
         bottom: 15,
-        right: 15
+        right: 15,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    botaoMais: {
+        fontSize: 40,
+        color: 'white',
+        fontWeight: 'bold',
     }
 });
