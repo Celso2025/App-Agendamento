@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, TextInput } from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 
 export default function NovaTarefa () {
     return (
@@ -14,7 +15,18 @@ export default function NovaTarefa () {
                 <Text style={styles.categoria}>Categoria da Tarefa</Text>
                 <TextInput style={styles.TextInput}
                      placeholder='Selecione a categoria'/>
-            
+                <Picker> 
+                    <Picker.Item label="Estude" value="estude" />
+  <                 <Picker.Item label="Trabalho" value="trabalho" />
+                    <Picker.Item label="Reuniao" value="reuniao" />
+  <                 <Picker.Item label="Prova" value="prova" />
+                    <Picker.Item label="Aula" value="aula" />
+                               
+                </Picker>
+                <Text style={styles.texto}>Descricao da Tarefa
+                </TextInput
+                    <style{styles.textInput}
+                    placeholder: 'value'
 
             </View>
         
@@ -65,7 +77,8 @@ const styles = StyleSheet.create({
     
     categoria: {
         fontWeight: 'bold',
-        margin: 15
+        margin: 20,
+
       },
       
 
