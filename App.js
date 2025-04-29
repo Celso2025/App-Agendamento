@@ -16,6 +16,7 @@ const RootStack = createNativeStackNavigator({
     Home: Home,
     EditTask: EditTask,
     NovaTarefa: NovaTarefa,
+    
   },
 });
 
