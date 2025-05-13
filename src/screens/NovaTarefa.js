@@ -128,12 +128,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'end'
     },
+    
     botao: {
         padding: 15,
-        
-
 
     },
+
     botaoTexto: {
         color: 'indigo'
     }

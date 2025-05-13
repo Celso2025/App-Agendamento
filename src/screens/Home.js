@@ -1,10 +1,17 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import TarefaItem from '../components/TarefaItem';
 import { useNavigation } from '@react-navigation/native';
+import { getData } from '../storage/async-storage';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
 
-    const navigation = useNavigation();
+    const [tasks, setTeaks] = useState(null);
+
+    useEffect(async () => {
+        const date = await getData();
+        setTeaks(data)
+    })
 
     return (
         <View style={styles.container}>
@@ -13,24 +20,28 @@ export default function Home() {
                 <View style={styles.icone}></View>
             </View>
             <ScrollView style={styles.body}>
-                <TarefaItem 
-                    nome="Tarefa 1" 
-                    status="a cumprir" 
-                    data="24/04/2004" 
-                    categoria="reunião"
-                />
-                <TarefaItem 
-                    nome="Tarefa 2" 
-                    status="concluído" 
-                    data="35/13/2088" 
-                    categoria="estudo"
-                />
+                {
+                    tasks != null &&
+                        tasks.map((item) => {
+                            return (
+                                <TarefaItem
+                                    nome={item.nome}
+                                    status={item.status}
+                                    data={item.data}
+                                    categoria={item.categoria}
+                                />
+
+                            )
+
+                        })
+                }
+
             </ScrollView>
 
-            <TouchableOpacity 
+            <TouchableOpacity
                 style={styles.botaoAdicionar}
                 onPress={() => {
-                    navigation.navigate('NovaTarefa')
+                    alert('wedwe')
                 }}
             >
                 <Text style={styles.botaoMais}>+</Text>
