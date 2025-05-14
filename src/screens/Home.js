@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import TarefaItem from '../components/TarefaItem';
+import TarefaItem from '../components/tarefaitem';
 import { useNavigation } from '@react-navigation/native';
-import { getData } from '../storage/async-storage';
+import { getData } from '../async.storage';
 import { useEffect, useState } from 'react';
 
 export default function Home() {

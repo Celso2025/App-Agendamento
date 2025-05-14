@@ -7,11 +7,16 @@ const getData = async () => {
 
     if (data == null) {
         data = []
-        Setdata(data)
+        setData(data)
     }
     return data
 }
 
-const Setdata = async (value) => {
-    
+const setData = async (value) => {
+
+}
+
+export {
+    getData,
+    setData
 }
