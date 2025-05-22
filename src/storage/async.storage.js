@@ -19,7 +19,7 @@ const setData = async (value) => {
 }
 
 const addData = async (task) => {
-    const data = await getDate()
+    const data = await getData()
     data.push(task)
     await setData(data)
 

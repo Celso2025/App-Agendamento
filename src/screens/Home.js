@@ -33,9 +33,10 @@ export default function Home() {
             <ScrollView style={styles.body}>               
                 {
                 
-                    tasks && tasks.map((item) => {
+                    tasks && tasks.map((item, index) => {
                         return (
                             <TarefaItem
+                                key={index}
                                 nome={item.nome}
                                 status={item.status}
                                 data={item.data}
@@ -52,7 +53,7 @@ export default function Home() {
             <TouchableOpacity
                 style={styles.botaoAdicionar}
                 onPress={() => {
-                    alert('wedwe')
+                    navigation.navigate("NovaTarefa")
                 }}
             >
                 <Text style={styles.botaoMais}>+</Text>

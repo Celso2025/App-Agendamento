@@ -20,9 +20,27 @@ export default function NovaTarefa() {
             data: data,
             descricao: descricao
         };
-        await addData(tarefa)
-        alert("Nova tarefa cadastrada!")
-        navigation.navigate('Home')
+
+        if (nome == '') { 
+            alert("Campo nome não preenchido!")
+        
+        }
+        else if (categotia == '') {
+            alert('Campo categoria não preenchido!')
+        }
+        else if (data == '') {
+            alert('Campo data não preenchida!')
+
+        }
+        else if (descricao == '') {
+            alert('campo descricao não preenchido')
+        }
+
+        else {
+            await addData(tarefa)
+            alert('Nova tarefa cadastrada!')
+            navigation.navigate('Nome')
+        }
     }
 
     return (
