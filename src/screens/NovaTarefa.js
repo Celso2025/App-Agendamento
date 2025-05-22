@@ -1,60 +1,80 @@
-import { View, Text, StyleSheet, TextInput, TextDate, Touchable } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import { useState } from 'react';
+import { addData } from '../storage/async.storage';
 
 export default function NovaTarefa() {
 
     const navigation = useNavigation();
 
-    return (
+    const [ nome, setNome ] = useState('')
+    const [ categotia, setCategotia ] = useState('prova')
+    const [ descricao, setDescricao ] = useState('')
+    const [ data, setData ] = useState('')
 
+    const handleSave = async () => {
+        const tarefa = {
+            nome: nome,
+            categoria: categotia,
+            data: data,
+            descricao: descricao
+        };
+        await addData(tarefa)
+        alert("Nova tarefa cadastrada!")
+        navigation.navigate('Home')
+    }
+
+    return (
         <View>
             <View style={styles.cabecalho}>
                 <Text style={styles.titulo}>Adicionar Tarefa</Text>
-
             </View>
             <View style={styles.body}>
-                <Text style={styles.texto}>Nome da Tarefa</Text>
-                <TextInput style={styles.TextInput} />
-                <Text style={styles.categoria}>Categoria da Tarefa</Text>
-                <Picker style={styles.TextInput}>
-                    <Picker.Item label="Estude" value="estude" />
+                <Text style={styles.texto}>Nome da Tarefa:</Text>
+                <TextInput style={styles.textInput} value={nome} onChangeText={texto => setNome(texto)} />
+
+                <Text style={styles.texto}>Categotia da Tarefa:</Text>
+                <Picker style={styles.textInput} selectedValue={categotia} onValueChange={texto => setCategotia(texto)}>
+                    <Picker.Item label="Estudo" value="estudo" />
                     <Picker.Item label="Trabalho" value="trabalho" />
-                    <Picker.Item label="Reuniao" value="reuniao" />
+                    <Picker.Item label="Reunião" value="reuniao" />
                     <Picker.Item label="Prova" value="prova" />
                     <Picker.Item label="Aula" value="aula" />
-
                 </Picker>
 
-                <Text style={styles.texto}>Descricao da Tarefa</Text>
+                <Text style={styles.texto}>Descrição da Tarefa:</Text>
                 <TextInput
                     style={styles.textInput}
-                    placeholder='value'
+                    placeholder='Value'
                     multiline
                     numberOfLines={3}
-
-                ></TextInput>
-                <TextInput
-                    style={styles.textDate}
-                    placeholder='dd/mm/xxxx'
+                    value={descricao} onChangeText={texto => setDescricao(texto)}
                 />
-                <View style={ styles.containerBotao}>
-                <TouchableOpacity style={styles.botao} onPress={() => navigation.goBack()}>
-                    <Text style={styles.botaoTexto}>Cancel</Text> 
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.botao}>
-                    <Text style={styles.botaoTexto}> Ok </Text> 
-                </TouchableOpacity>
+
+                <TextInput 
+                    style={styles.textDate}
+                    placeholder='dd/mm/yyyy'
+                    value={data} onChangeText={texto => setData(texto)}
+                />
+
+                <View style={styles.containerBotao}>
+                    <TouchableOpacity style={styles.botao} onPress={() => navigation.goBack()}>
+                        <Text style={styles.botaoTexto}>Cancel</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.botao} onPress={() => {
+                        handleSave()
+                    }}>
+                        <Text style={styles.botaoTexto}>OK</Text>
+                    </TouchableOpacity>
                 </View>
 
             </View>
-
         </View>
     )
+}
 
-};
 
 const styles = StyleSheet.create({
     container: {
@@ -75,36 +95,11 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     body: {
-        padding: 10
+        padding: 15,
     },
     texto: {
-        margin: 15,
-        fontWeight: 'bold'
+        marginBottom: 5
     },
-
-    tarefa: {
-        margin: 15,
-        fontWeight: 'bold'
-    
-
-    },
-
-    TextInput: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 10,
-        backgroundColor: 'white'
-    },
-
-    categoria: {
-        fontWeight: 'bold',
-        margin: 20,
-        
-
-    },
-
     textInput: {
         borderWidth: 1,
         borderRadius: 10,
@@ -112,14 +107,13 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: 'white',
         marginBottom: 15
-
     },
     textDate: {
-        height: 50,
+        height: 60,
         borderWidth: 3,
         borderColor: 'indigo',
         borderRadius: 5,
-        margin: 20,
+        margin: 40,
         marginVertical: 30,
         padding: 15,
         backgroundColor: 'white'
@@ -128,16 +122,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'end'
     },
-    
     botao: {
-        padding: 15,
-
+        padding: 15
     },
-
     botaoTexto: {
         color: 'indigo'
     }
 });
-
-
-

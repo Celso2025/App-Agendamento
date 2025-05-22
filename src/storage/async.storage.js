@@ -10,13 +10,23 @@ const getData = async () => {
         setData(data)
     }
     return data
+    
 }
 
 const setData = async (value) => {
+    await AsyncStorage.setItem(key, JSON.stringify(value));
+
+}
+
+const addData = async (task) => {
+    const data = await getDate()
+    data.push(task)
+    await setData(data)
 
 }
 
 export {
     getData,
-    setData
+    setData,
+    addData
 }

@@ -1,17 +1,28 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import TarefaItem from '../components/tarefaitem';
 import { useNavigation } from '@react-navigation/native';
-import { getData } from '../async.storage';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getData } from '../storage/async.storage';
 
 export default function Home() {
 
-    const [tasks, setTeaks] = useState(null);
+    const navigation = useNavigation();
 
-    useEffect(async () => {
-        const date = await getData();
-        setTeaks(data)
-    })
+    const [tasks, setTeaks] = useState(null)
+    const [isloaded, setIsloaded ] = useState(true)
+
+    const loadData = async () => {
+        const data = await getData();
+        setTeaks(data);
+        setIsloaded(!isloaded)
+    }
+
+    useEffect(() => {
+        if(isloaded){
+            loadData();
+        }
+    },  [isloaded]);
+    
 
     return (
         <View style={styles.container}>
@@ -19,21 +30,21 @@ export default function Home() {
                 <Text style={styles.titulo}>ABRIL / 2025</Text>
                 <View style={styles.icone}></View>
             </View>
-            <ScrollView style={styles.body}>
+            <ScrollView style={styles.body}>               
                 {
-                    tasks != null &&
-                        tasks.map((item) => {
-                            return (
-                                <TarefaItem
-                                    nome={item.nome}
-                                    status={item.status}
-                                    data={item.data}
-                                    categoria={item.categoria}
-                                />
+                
+                    tasks && tasks.map((item) => {
+                        return (
+                            <TarefaItem
+                                nome={item.nome}
+                                status={item.status}
+                                data={item.data}
+                                categoria={item.categoria}
+                            />
 
-                            )
+                        )
 
-                        })
+                    })
                 }
 
             </ScrollView>
