@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import TarefaItem from '../components/tarefaitem';
+import TarefaItem from '../components/TarefaItem';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { getData } from '../storage/async.storage';
