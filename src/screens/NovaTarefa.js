@@ -39,7 +39,7 @@ export default function NovaTarefa() {
         else {
             await addData(tarefa)
             alert('Nova tarefa cadastrada!')
-            navigation.navigate('Nome')
+            navigation.navigate('Home')
         }
     }
 
